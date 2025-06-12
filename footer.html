@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/iframe.css">
+</head>
+<body>
+    <footer>
+        <ul class="footer__socialmedia">
+            <li class="footer__socialmedia-item"><a href="https://www.instagram.com/granollersurbanspeed/" target="_blank"><img src="Fotos/5335781_camera_instagram_social media_instagram logo_icon.svg" alt="Instagram"></a></li>
+            <li class="footer__socialmedia-item"><img src="Fotos/5305164_play_video_youtube_youtube logo_icon.png" alt="Youtube"></li>
+            <li class="footer__socialmedia-item"><img src="Fotos/5305166_call_chat_mobile_whatsapp_whatsapp logo_icon.svg" alt="Whatsapp"></li>
+            <li class="footer__socialmedia-item"><a href="https://mail.google.com/mail/?view=cm&fs=1&to=granollersurbanspeed@gmail.com" target="_blank"><img src="Fotos/324454_email_communicate_communication_creative_grid_icon.svg" alt="Gmail"></a></li>
+        </ul>
+        <ul class="footer__menu">
+            <li class="footer__menu-item"><a href="contacte.html" target="_parent">Contacte</a></li>
+            <li class="footer__menu-item"><a href="" target="_parent">Sobre nosaltres</a></li>
+            <li class="footer__menu-item"><a href="Reglament.pdf" target="_parent">Reglament</a></li>
+            <li class="footer__menu-item"><a href="" target="_parent">Clausules d'inscirpció</a></li>
+        </ul>
+        <div class="footer__copyright">@Copyright - Granollers Urban Speed</div>
+    </footer>
+    <script>
+        function enviarAlcada() {
+            parent.postMessage({ id: "footer", height: document.body.scrollHeight }, "*");
+        }
+        window.onload = enviarAlcada;
+        window.onresize = enviarAlcada;
+    </script>
+</body>
+</html>

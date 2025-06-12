@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/iframe.css">
+    <link rel="stylesheet" href="css/contacte.css">
+    <link rel="icon" type="image/x-icon" href="Fotos/Logo_nobg-small.png"/>
+    <title>GUS - Contacte</title>
+</head>
+<body>
+    <iframe id="headerFrame" src="header.html" width="100%" frameborder="0"></iframe>
+    <main class="main">
+        <h1 class="main__title">Contacte</h1>
+        <p class="main__description">Si tens alguna pregunta o dubte, no dubtis en contactar-nos omplint aquest formulari o enviant un mail a granollersurbanspeed@gmail.com . Estarem encantats d'ajudar-te.</p>
+            <form action="" class="main__form" id="myForm">
+                <h2>Formulari de contacte</h2>
+                <div class="main__form-part">
+                    <label class="main__form-label" for="nom">Nom:</label>
+                    <input class="main__form-input" type="text" id="nom" name="nom" required>
+                </div>
+                <div class="main__form-part">
+                    <label class="main__form-label" for="email">Email:</label>
+                    <input class="main__form-input" type="email" id="email" name="email" required>
+                </div>
+                <div class="main__form-part">
+                    <label class="main__form-label" for="missatge">Missatge:</label>
+                    <textarea class="main__form-input main__form-textarea" name="missatge" id="missatge" cols="30" rows="10" required></textarea>
+                </div>
+                <input class="main__form-button" type="submit" value="Enviar">
+            </form>
+    </main>
+    <iframe id="footerFrame" src="footer.html" width="100%" frameborder="0"></iframe>
+    <script>
+        window.addEventListener("message", function(event) {
+            let data = event.data;
+            if (data.id === "header") {
+                document.getElementById("headerFrame").style.height = data.height + "px";
+            } else if (data.id === "footer") {
+                document.getElementById("footerFrame").style.height = data.height + "px";
+            }
+        });
+
+        document.getElementById("myForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let formData = {
+                nom: document.getElementById("nom").value,
+                email: document.getElementById("email").value,
+                missatge: document.getElementById("missatge").value
+            };
+
+            fetch("https://script.google.com/macros/s/AKfycbxOfIxtA3g7iD4klkJIc4CSu4WC9IV20gGLhMtLQD2o5jnDbo86M2LKNsM4y6cnjXrc/exec", {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            }).then(()=>alert("Dades enviades correctament!"));
+        });
+
+    </script>
+</body>
+</html>

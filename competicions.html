@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ca">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/iframe.css">
+        <link rel="stylesheet" href="css/competicions.css">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+        <link rel="icon" type="image/x-icon" href="Fotos/Logo_nobg-small.png"/>
+        <title>GUS - Competicions</title>
+    </head>
+    <body>
+        <iframe id="headerFrame" src="header.html" width="100%" frameborder="0"></iframe>
+        <main>
+            <div class="main__background-blur"></div>
+            <div class="main__background">
+                <h1>CURSES</h1>
+                <form class="main__searchbar-form" id="main__searchbar-form" action="">
+                    <div class="main__searchbar-form-inline">
+                        <input type="text" class="main__searchbar" placeholder="Cerca una competició">
+                        <button type="submit" class="main__searchbar-button material-symbols-outlined">search</button>
+                    </div>
+                    <div id="search_result"></div>
+                </form>
+                <div class="main__content">
+                    <div class="main__competicions">
+                        <h2>Competicions</h2>
+                        <h3>Competicions Futures</h3>
+                        <div class="main__competicions-futures">
+                            <details class="main__competicions-futures-content">
+                                <summary>Granollers Urban Speed RACC 2026 OPEN</summary>
+                                <p>La competició Granollers Urban Speed RACC 2026 OPEN es durà a terme el 5 de juliol de 2026 a Granollers. Només els majors d'edat podran participar. El preu de partcipació és de 300€ i el premi seran 10000€.</p>
+                                <br>
+                                <p>Places totals: 300</p>
+                                <div class="main__competicions-button"><a href="open2026.html">Més informació</a></div>
+                            </details>
+                        </div>
+                        <h3>Competicions passades</h3>
+                        <div class="main__competicions-passades"></div>
+                        <p>Encara no s'ha dut a terme cap competició</p>
+                    </div>
+                    <div class="main__resultats">
+                        <h2>Resultats de la competició anterior</h2>
+                        <div class="main__resultats-content">
+                            <p>Encara no s'ha dut a terme cap competició</p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </main>
+        <div id="footer">
+        </div>
+        <iframe id="footerFrame" src="footer.html" width="100%" frameborder="0"></iframe>
+        <script>
+            window.addEventListener("message", function(event) {
+                let data = event.data;
+                if (data.id === "header") {
+                    document.getElementById("headerFrame").style.height = data.height + "px";
+                } else if (data.id === "footer") {
+                    document.getElementById("footerFrame").style.height = data.height + "px";
+                }
+            });
+
+            document.getElementById("main__searchbar-form").addEventListener("submit", function (event) {
+                event.preventDefault();
+                document.getElementById("search_result").innerHTML = "";
+                let searchValue = document.querySelector(".main__searchbar").value.toLowerCase();
+                let competicions = [
+                    ...document.querySelectorAll(".main__competicions-futures-content"),
+                    ...document.querySelectorAll(".main__competicions-passades-content")
+                ];                
+                let competicioTrobada = false;
+                competicions.forEach(function (competicio) {
+                    let summaryText = competicio.querySelector("summary").textContent.toLowerCase();
+                    if (summaryText.includes(searchValue)) {
+                        competicioTrobada = true;
+                        const searchResult = document.createElement("a");
+                        searchResult.textContent = summaryText;
+                        searchResult.href = competicio.getElementsByClassName("main__competicions-button")[0].getElementsByTagName("a")[0].href;
+                        document.getElementById("search_result").appendChild(searchResult);
+                    } 
+                });
+
+                if (!competicioTrobada) {
+                    const searchResult = document.createElement("p");
+                    searchResult.textContent = "No s'ha trobat cap competició amb aquest nom.";
+                    document.getElementById("search_result").appendChild(searchResult);
+                } else {
+                    
+                }
+            });
+        </script>
+    </body>
+</html>

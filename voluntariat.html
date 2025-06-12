@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/voluntariat.css">
+    <link rel="stylesheet" href="css/iframe.css">
+    <link rel="stylesheet" href="css/contacte.css">
+    <title>GUS - Voluntariat</title>
+</head>
+<body>
+    <iframe src="header.html" id="headerFrame" frameborder="0"></iframe>
+    <main class="main">
+        <h1 class="main__title">Voluntariat</h1>
+        <p class="main__description">Per organitzar una carrera fa falta molta gent i necessitem la teva ajuda. Si vols apuntar-te omple el següent formulari!</p>
+        <form action="" class="main__form" id="myForm">
+            <h2>Inscripció al voluntariat</h2>
+            <div class="main__form-part">
+                <label class="main__form-label" for="nom">Nom:</label>
+                <input class="main__form-input" type="text" id="nom" name="nom" required>
+            </div>
+            <div class="main__form-part">
+                <label class="main__form-label" for="email">Email:</label>
+                <input class="main__form-input" type="email" id="email" name="email" required>
+            </div>
+            <div class="main__form-part">
+                <label class="main__form-label" for="missatge">Hores:</label>
+                <select class="main__form-input" id="hores" required>
+                    <option value="None" disabled selected>Selecciona una opció</option>
+                    <option value="Matí">Matí: de 7:00 a 9:30 </option>
+                    <option value="Tarda">Tarda: de 18:30 a 21:00 </option>
+                    <option value="Dos">Matí i tarda</option>
+                </select>
+            </div>
+            <input class="main__form-button" type="submit" value="Enviar">
+        </form>
+    </main>
+    <iframe src="footer.html" id="footerFrame" frameborder="0"></iframe>
+    <script>
+        window.addEventListener("message", function(event) {
+            let data = event.data;
+            if (data.id === "header") {
+                document.getElementById("headerFrame").style.height = data.height + "px";
+            } else if (data.id === "footer") {
+                document.getElementById("footerFrame").style.height = data.height + "px";
+            }
+        });
+
+        document.getElementById("myForm").addEventListener("submit",function(event) {
+            event.preventDefault();
+            let formData = {
+                nom: document.getElementById("nom").value,
+                email: document.getElementById("email").value,
+                hores: document.getElementById("hores").value
+            };
+
+            fetch("https://script.google.com/macros/s/AKfycbwgpKhC1YwLMZLWpmo1-NL5n6J8SD-fWAU0yXAvfAyU07uSEldssogYZD_TxJ8HIf1P7A/exec", {
+                method: "POST",
+                mode:"no-cors",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            }).then(()=>alert("Dades enviades correctament!"));
+        });
+    </script>
+</body>
+</html>

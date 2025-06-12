@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ca">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Granollers urban speed</title>
+        <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <link rel="stylesheet" href="css/iframe.css">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+        <link rel="icon" type="image/x-icon" href="Fotos/Logo_nobg-small.png"/>
+    </head>
+    <body>
+        <iframe id="headerFrame" src="header.html" width="100%" frameborder="0"></iframe>
+        <main class="main">
+            <div class="main__top">
+                <picture class="main__img">
+                    <source srcset="Fotos/car-index-large.jpg" media="(min-width: 1920px)">
+                    <img src="Fotos/car-index-small.jpg" alt="Granollers urban speed">
+                </picture>
+                <div class="main__img-filter" id="main__img-filter"></div>
+                <div class="main__title-centerer">
+                    <h1 class="main__title" id="main__title">BENVINGUTS A GRANOLLERS URBAN SPEED</h1>
+                </div>
+            </div>
+            <div class="main__separation"></div>
+            <div class="main__cards-center">
+                <div class="main__cards">
+                    <div class="main__event">
+                        <picture class="main__event-img">
+                            <source srcset="Fotos/Porsche-negre-darrere-large.jpg" media="(min-width: 1920px)">
+                            <source srcset="Fotos/Porsche-negre-darrere-normal.jpg" media="(min-width: 1360px)">
+                            <img src="Fotos/Porsche-negre-darrere-small.jpg" alt="Cotxe porsche">
+                        </picture>
+                        <div class="main__event-content">
+                            <h2>Granollers Urban Speed RACC 2026 OPEN</h2>
+                            <p>Vols participar a la cursa <strong>pública</strong> més intensa i emocionant de tota la comarca? La Granollers Urban Speed RACC 2026 OPEN s'organitzarà a Granollers el dia 5 de juliol de 2026 i tothom hi podrà participar. T'hi esperem!</p>
+                            <div class="main__event-content-button-center">
+                                <div class="main__event-content-button">
+                                    <p><a href="open2026.html">Més informació</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="main__event">
+                        <div class="main__event-content">
+                            <h2>Vols ajudar?</h2>
+                            <p>Necessitem la teva ajuda per preparar la cursa, pots participar al nostre voluntariat per muntar totes les intal·lacions amb nosaltres.<p>
+                            <div class="main__event-content-button-center">
+                                <div class="main__event-content-button">
+                                    <p><a href="voluntariat.html">Apuntar-se</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="main__event">
+                        <div class="main__event-content">
+                            <h2>Contacte</h2>
+                            <p>Tens algun dubte? Envia'ns un missatge per resoldre la qüestió.<p>
+                            <div class="main__event-content-button-center">
+                                <div class="main__event-content-button">
+                                    <p><a href="contacte.html">Anar-hi</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <iframe id="footerFrame" src="footer.html" width="100%" frameborder="0"></iframe>
+        <script>
+
+            window.addEventListener("message", function(event) {
+                let data = event.data;
+                if (data.id === "header") {
+                    document.getElementById("headerFrame").style.height = data.height + "px";
+                    document.getElementById("main__img-filter").style.top = data.height + "px";
+                    document.getElementById("main__title").style.top = "calc(50% + " + data.height + "px)";
+                } else if (data.id === "footer") {
+                    document.getElementById("footerFrame").style.height = data.height + "px";
+                }
+            });
+        </script>
+    </body>
+</html>

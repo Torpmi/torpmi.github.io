@@ -1,0 +1,125 @@
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: sans-serif;
+    font-size: 16px;
+    --bg-color: #1c1c1c;
+    --bg-color-light: #333;
+    --bg-color-dark: #0a0a0a;
+    --secondary-color: #a0a0a0;
+    --secondary-color-light: #d1d1d1;
+    --secondary-color-dark: #7a7a7a;
+    --main-color: #e30613;
+    --main-color-light: #ff3b3b;
+    --main-color-dark: #a10008;
+    --text-color: #f2f2f2;
+    --text-color-light: #ffffff;
+    --text-color-dark: #e6e6e6;
+}
+
+*::selection {
+    background-color: var(--main-color-light);
+}
+
+a {
+    display: inline;
+}
+
+main {
+    width: clamp(500px, 48%, 1200px);
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+}
+
+main h1 {
+    margin: 20px;
+}
+
+main > p {
+    margin: 20px;
+    text-align: justify;
+}
+
+.content {
+    background: linear-gradient(315deg, var(--bg-color), var(--bg-color-light));
+    color: var(--text-color);
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: var(--bg-color-dark) 10px 10px 0px 0;
+}
+
+.content h2 {
+    margin: 5px 0 15px 0;
+}
+
+.content fieldset {
+    margin: 30px 0 0 0;
+    color: var(--text-color-dark);
+    display: flex;
+    flex-direction: column;
+    border: none;
+    border-top: 2px solid var(--text-color);
+}
+
+.content legend {
+    color: var(--text-color);
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 0 10px;
+}
+
+.content fieldset div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.content label {
+    margin-right: 10px;
+}
+
+.content input, select {
+    width: 100%;
+    display: inline-block;
+    background-color: var(--bg-color-light);
+    border: none;
+    border-bottom: 2px solid var(--text-color);
+    outline: none;
+    color: var(--text-color);
+    padding: 5px;
+    box-shadow: #0003 0 0 10px 0;
+}
+
+.content input[type="checkbox"] {
+    width: 20px;
+    margin: 0 5px 0 0;
+}
+
+.content input[type="submit"] {
+    background-color: var(--main-color-dark);
+    color: var(--text-color);
+    border: none;
+    border-bottom: var(--main-color-light) solid 4px;
+    padding: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+    main {
+        width: 90%;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .content input, select {
+        width: 100%;
+    }
+    
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/iframe.css">
+    <link rel="stylesheet" href="css/inscripció.css">
+    <link rel="icon" type="image/x-icon" href="Fotos/Logo_nobg-small.png"/>
+    <title>GUS - Inscripció</title>
+</head>
+<body>
+    <iframe id="headerFrame" src="header.html" width="100%" frameborder="0"></iframe>
+    <main>
+        <h1>Inscripció</h1>
+        <p>
+            Ompliu el formulari d'inscripció per participar a la competició. Assegureu-vos de llegir i acceptar el reglament i els termes i condicions abans d'enviar el formulari.
+        </p>
+        <div class="content">
+            <h2>Formulari d'inscirpció</h2>
+            <form action="" id="myForm">
+                <fieldset>
+                    <legend>Dades del competidor</legend>
+                    <div>
+                        <label for="nom">Nom</label>
+                        <input type="text" name="nom" id="nom" required>
+                    </div>
+                    <div>
+                        <label for="email">Correu electrònic</label>
+                        <input type="email" name="email" id="email" required>
+                    </div>
+                    <div>
+                        <label for="telefon">Telèfon</label>
+                        <input type="number" name="telefon" id="telefon" required>
+                    </div>
+                    <div>
+                        <label for="dni">DNI / NIE</label>
+                        <input type="text" name="dni" id="dni" required>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Dades de la competició</legend>
+                    <div>
+                        <label for="cotxe">Cotxe</label>
+                        <input type="text" name="cotxe" id="cotxe">
+                    </div>
+                    <div>
+                        <input type="checkbox" name="reglament" id="reglament" required>
+                        <label for="reglament">He llegit i accepto el <a href="Reglament.pdf">reglament</a></label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="termes-i-condicions" id="termes-i-condicions" required>
+                        <label for="termes-i-condicions">He llegit i accepto els <a href="#">termes i condicions</a></label>
+                    </div>
+                </fieldset>
+                <input type="submit" value="Enviar">
+            </form>
+        </div>
+    </main>
+    <iframe id="footerFrame" src="footer.html" width="100%" frameborder="0"></iframe>
+    <script>
+        window.addEventListener("message", function(event) {
+            let data = event.data;
+            if (data.id === "header") {
+                document.getElementById("headerFrame").style.height = data.height + "px";
+            } else if (data.id === "footer") {
+                document.getElementById("footerFrame").style.height = data.height + "px";
+            }
+        });
+
+
+
+        document.getElementById("myForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            let formData = {
+                nom: document.getElementById("nom").value,
+                email: document.getElementById("email").value,
+                telefon: document.getElementById("telefon").value,
+                dni: document.getElementById("dni").value,
+                cotxe: document.getElementById("cotxe").value,
+            };
+
+            fetch("https://script.google.com/macros/s/AKfycbzPS0zrISS98GVzh1scNieJd2rbH-LuYOn0juwDdfH8OzXZF1QcYDeXnCavlbJhKzFl/exec", {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData)
+            }).then(() => alert("Dades enviades correctament!"));
+        });
+
+    </script>
+</html>
