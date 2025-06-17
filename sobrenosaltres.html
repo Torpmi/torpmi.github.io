@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ca">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>GUB - Sobre nosaltres</title>
+        <link rel="stylesheet" href="css/iframe.css">
+        <link rel="stylesheet" href="css/sobrenosaltres.css">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+        <link rel="icon" type="image/x-icon" href="Fotos/Logo_nobg-small.png"/>
+    </head>
+    <body>
+        <iframe id="headerFrame" src="header.html" width="100%" frameborder="0"></iframe>
+        <main>
+            <div class="title-div">
+                <h1 class="title">Sobre nosaltres</h1>
+            </div>
+            <p>Granollers Urban Speed és una associació formada per Gerard Mesas, Tristán Rial i Ot Serra amb l'objectiu d'organitzar una cursa de cotxes urbana d'inscripció oberta.</p>
+            <p>- Gerard Mesas: encarregat del reglament i l'apartat legal de la competició.</p>
+            <p>- Tristán rial: encarregat del circuit de la competició.</p>
+            <p>- Ot Serra: encarregat de la pàgina web</p>
+            <img src="Fotos/Foto integrants GUB.jpg" alt="Foto dels integrants de GUB">
+        </main>
+        <iframe id="footerFrame" src="footer.html" width="100%" frameborder="0"></iframe>
+        <script>
+
+            window.addEventListener("message", function(event) {
+                let data = event.data;
+                if (data.id === "header") {
+                    document.getElementById("headerFrame").style.height = data.height + "px";
+                    document.getElementById("main__img-filter").style.top = data.height + "px";
+                    document.getElementById("main__title").style.top = "calc(50% + " + data.height + "px)";
+                } else if (data.id === "footer") {
+                    document.getElementById("footerFrame").style.height = data.height + "px";
+                }
+            });
+        </script>
+    </body>
+</html>
