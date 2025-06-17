@@ -1,0 +1,20 @@
+main {
+    width: clamp(300px, 60%, 1200px);
+    margin: auto;
+}
+.title-div {
+    margin: auto;
+    width: fit-content;
+}
+
+.title {
+    margin: 30px;
+}
+
+p {
+    margin: 15px 0;
+}
+
+img {
+    width: 100%;
+}
